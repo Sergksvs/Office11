@@ -103,7 +103,9 @@
         var docs =
             [{"path":"./Resource/3D вид/3DKolesnikov 4476194/3DKolesnikov.svf","name":"3DKolesnikov"},{"path":"./d039d604-8e6f-d470-3a46-49297fa4931d_f2d/primaryGraphics.f2d","name":"H_0.000"},{"path":"./fe35fad9-89e9-26a8-25dd-50c62ae606be_f2d/primaryGraphics.f2d","name":"ϫ1 - План этажа с размещением мебели"},{"path":"./957f49fc-117a-c7a5-7e29-4957bb07bd98_f2d/primaryGraphics.f2d","name":"₫1 - Preliminary layout"},{"path":"./2027221f-4b3b-6957-9199-27beb947ee97_f2d/primaryGraphics.f2d","name":"₫2 - Preliminary layout"},{"path":"./24549507-4eee-211e-405c-761af84b9af0_f2d/primaryGraphics.f2d","name":"ϫ2 - План этажа. Цветовое решение стен"},{"path":"./ceb40937-3527-dc1e-3635-78633423b94c_f2d/primaryGraphics.f2d","name":"ϫ3 - 3d-вид 1. Цветовое решение стен"},{"path":"./656563c0-4380-7181-528d-6fae18a5f5e9_f2d/primaryGraphics.f2d","name":"ϫ6 - Помещение 04. Развертки стен"},{"path":"./b26844d1-ffb2-9a21-0037-3eea66824c53_f2d/primaryGraphics.f2d","name":"ϫ9 - Схема рассадки сотрудников"}]
         ;
-
+function setViewport() {
+		viewer.restoreState({"viewport":{"name":"","eye":[-27.498768999304694,17.240887736969256,-11.235977021830514],"target":[-25.90596576702821,11.899228426419839,-11.16485562032265],"up":[-0.0036457005322899786,0.012226300020719175,0.9999186099155433],"worldUpVector":[0,0,1],"pivotPoint":[-25.910858326341717,13.304184813921704,-13.584794263544843],"distanceToOrbit":4.195994357528876,"aspectRatio":1.7746113989637307,"projection":"perspective","isOrthographic":false,"fieldOfView":43.95808809186831}});	
+	}
         var oViewer =null ;
         $(document).ready (function () {
             //var options ={ 'document': '', 'env': 'AutodeskProduction' } ;
@@ -115,9 +117,15 @@
 			Autodesk.Viewing.Initializer (options, function () {
 				oViewer.initialize () ;
                 oViewer.addEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function (event) {
-                    //oViewer.removeEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, arguments.callee) ;
+                    oViewer.removeEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, arguments.callee) ;
                     oViewer.fitToView (true) ;
                     setTimeout (function () { oViewer.autocam.setHomeViewFrom (oViewer.navigation.getCamera ()) ; }, 1000) ;
+					
+					 oViewer.setBackgroundColor(0,0,0, 155,155,155);
+        oViewer.impl.toggleGroundShadow(true);
+        setViewport();
+        window.setTimeout(i=>viewer.toolController.activateTool('firstperson'),4000);
+		
                 }) ;
 				oViewer.loadModel (options.docid) ;
 
