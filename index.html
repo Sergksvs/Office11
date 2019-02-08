@@ -41,14 +41,14 @@ function setViewport() {
              window.devicePixelRatio = 1;
 			var options ={ 'docid': docs [0].path, env: 'Local' } ;
 
-            //oViewer =new Autodesk.Viewing.Viewer3D ($("#viewer") [0], {}) ; // No toolbar
-            oViewer =new Autodesk.Viewing.Private.GuiViewer3D ($("#viewer") [0], {}) ; // With toolbar
+            oViewer =new Autodesk.Viewing.Viewer3D ($("#viewer") [0], {}) ; // No toolbar
+            //oViewer =new Autodesk.Viewing.Private.GuiViewer3D ($("#viewer") [0], {}) ; // With toolbar
             
 			Autodesk.Viewing.Initializer (options, function () {
 				oViewer.initialize () ;
 								//setViewport();        
         window.setTimeout(i=>oViewer.toolController.activateTool('firstperson'),4000);
-		window.setTimeout(g=>oViewer.toolController.activateTool('fullscreen'),4500);
+	//	window.setTimeout(g=>oViewer.toolController.activateTool('fullscreen'),4500);
                 oViewer.addEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function (event) {
                     oViewer.removeEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, arguments.callee) ;
                 //    oViewer.fitToView (true) ;
