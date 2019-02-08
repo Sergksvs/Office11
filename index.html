@@ -48,7 +48,7 @@ function setViewport() {
 				oViewer.initialize () ;
 								//setViewport();        
         window.setTimeout(i=>oViewer.toolController.activateTool('firstperson'),4000);
-		window.setTimeout(i=>oViewer.toolController.activateTool('fullscreen'),4000);
+		window.setTimeout(g=>oViewer.toolController.activateTool('fullscreen'),4500);
                 oViewer.addEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function (event) {
                     oViewer.removeEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, arguments.callee) ;
                 //    oViewer.fitToView (true) ;
